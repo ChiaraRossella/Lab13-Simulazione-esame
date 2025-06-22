@@ -28,13 +28,12 @@ class Model:
         return self._solBest, self._score
 
     def _ricorsione(self, parziale: list, k: int, rimanenti: list):
-        # condizione di invalidita
-        if len(parziale)> k:
-            return
         score = self.getScoreTeam(parziale)
-        if score < self._score and len(parziale)==k:
-            self._score = score
-            self._solBest = copy.deepcopy(parziale)
+        if len(parziale)==k:
+            if score < self._score:
+                self._score = score
+                self._solBest = copy.deepcopy(parziale)
+            return
 
         for n in rimanenti:
             rimanenti.remove(n)
